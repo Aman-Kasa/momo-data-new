@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoMo Transactions Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>MoMo Transactions Dashboard</h1>
+    <div>
+        <label for="category">Filter by Category:</label>
+        <select id="category">
+            <option value="">All</option>
+            <option value="Incoming Money">Incoming Money</option>
+            <option value="Payments">Payments</option>
+            <option value="Transfers">Transfers</option>
+            <option value="Bank Deposits">Bank Deposits</option>
+            <option value="Airtime Bill Payments">Airtime</option>
+            <option value="Withdrawals">Withdrawals</option>
+        </select>
+        <button onclick="fetchTransactions()">Filter</button>
+    </div>
+    
+    <canvas id="transactionsChart"></canvas>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Amount (RWF)</th>
+                <th>Date</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody id="transactionsTable"></tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
