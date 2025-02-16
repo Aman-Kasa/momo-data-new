@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import sqlite3
 import re
+import os
 from datetime import datetime
 
 # Load and parse the XML file
@@ -22,6 +23,16 @@ def parse_xml(file_path):
 
 # Categorize transactions
 def categorize_transaction(body):
+    """
+    Categorize a transaction based on the SMS body.
+
+    Args:
+        body (str): The SMS body to categorize.
+
+    Returns:
+        tuple: A tuple containing the transaction type and details. For example:
+            ("Incoming Money", ("Incoming Money", amount, date, body))
+    """
     body = body.lower()
     date_match = re.search(r'(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', body)
     date = date_match.group(1) if date_match else None
@@ -72,6 +83,7 @@ def insert_data(transactions):
 
 if __name__ == "__main__":
     setup_database()
-    transactions = parse_xml("backend/modified_sms_v2.xml")
+    file_path = os.path.join(os.path.dirname(__file__), "modified_sms_v2.xml")
+    transactions = parse_xml(file_path)
     insert_data(transactions)
     print("Data processing complete.")
